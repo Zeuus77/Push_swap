@@ -11,40 +11,86 @@
 /* ************************************************************************** */
 
 #include"push_swap.h"
-int range_h(int stack_a,int start,int end)
+
+int* create_sorted_copy(t_stack* stack)
 {
-	int *l;
-	int i;
-	i = start;
-	while(i <= end)
+	int i = 0;
+	int j = 0;
+	int* ret = malloc(sizeof(int) * stack->top);
+	while (i < stack->top + 1)
 	{
-		if(stack_a < l[start])
-			return(2);
-		if( stack_a == l[i])
-			return(1);
+		ret[i] = stack->items[i];
 		i++;
 	}
-	return(0);
-
-}
-void push_t(t_stack *stack_a, t_stack *stack_b)
-{
-	int m;
-	while(stack_b->top != -1)
+	i = 0;
+	while (j < stack->top + 1)
 	{
-		m = max_h(stack_b);
-		while(m != stack_b->top)
+		while (i < stack->top + 1)
 		{
-			if(m > stack_b->top / 2)
-				rotate_b(stack_b);
-			if(m <= stack_b->top / 2)
-				reverse_rotate_b(stack_b);
-			m = max_h(stack_b);
+			if (i + 1 < stack->top + 1 && ret[i] > ret[i + 1])
+			{
+				int tmp = ret[i];
+				ret[i] = ret[i + 1];
+				ret[i + 1] = tmp;
+			}
+			i++;
 		}
-		if(m == stack_b->top)
-			push_a(stack_a,stack_b);
+		i = 0;
+		j++;
+	}
+	return ret;
+}
+
+int get_index_of(int *arr, int size, int k)
+{
+	int i = 0;
+	while (i < size)
+	{
+		if (arr[i] == k)
+			return i;
+		i++;
+	}
+	return -1;
+}
+
+int ra_or_rra(t_stack *stack_b, int k)
+{
+	int middle = (stack_b->top) / 2;
+	int elem_idx = get_index_of(stack_b->items, stack_b->top +1, k);
+	if (elem_idx > middle)
+		return 1;
+	return 0;
+}
+
+
+void move_elem_to_top_b(t_stack* stack_b, int k)
+{
+	if (ra_or_rra(stack_b, k))
+	{
+		while (stack_b->items[stack_b->top ] != k)
+		{
+			rotate_b(stack_b);
+		}
+	}
+	else
+	{
+		while (stack_b->items[stack_b->top ] != k)
+		{
+			reverse_rotate_b(stack_b);
+		}
 	}
 }
+
+void move_elems_to_b(t_stack* a, t_stack* b)
+{
+	while (b->top != -1)
+	{
+		move_elem_to_top_b(b, max_h(b));
+		push_a(a, b);
+	}
+}
+
+
 void sorting_cien(t_stack *stack_a,t_stack *stack_b)
 {
 	int fn;
@@ -52,24 +98,26 @@ void sorting_cien(t_stack *stack_a,t_stack *stack_b)
 	int end;
 	start = 0;
 	end = 15;
-	while(stack_a->top != 1)
+	int* sorted_arr = create_sorted_copy(stack_a);
+	int stack_size = stack_a->top;
+	while (stack_a->top)
 	{
-		fn = range_h(stack_a->items[stack_a->top],start,end);
-		if(fn == 1)
+		int elem_idx = get_index_of(sorted_arr, stack_size, stack_a->items[stack_a->top]);
+		if (elem_idx >= start && elem_idx <= end)
 		{
-			push_b(stack_a,stack_b);
+			push_b(stack_a, stack_b);
 			start++;
 			end++;
 		}
-		if (fn == 0)
-			rotate_a(stack_a);
-		if (fn == 2)
+		else if(elem_idx < start)
 		{
-			push_b(stack_a,stack_b);
+			push_b(stack_a, stack_b);
 			rotate_b(stack_b);
 			start++;
 			end++;
 		}
+		else if (elem_idx > end)
+			rotate_a(stack_a);
 	}
-	push_t(stack_a,stack_b);
+	move_elems_to_b(stack_a, stack_b);
 }

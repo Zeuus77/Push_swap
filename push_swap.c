@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: youel-id <youel-id@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/30 03:02:43 by youel-id          #+#    #+#             */
-/*   Updated: 2023/03/30 03:02:45 by youel-id         ###   ########.fr       */
+/*   Created: 2023/04/23 22:21:08 by youel-id          #+#    #+#             */
+/*   Updated: 2023/04/23 22:21:09 by youel-id         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include<unistd.h>
 #include<stdlib.h>
@@ -96,7 +97,9 @@ int main(int ac, char **av)
 	b->items = malloc(sizeof(int) * a->top);
 	b->top = -1;
 	//sort_tres(a);
+	//sort_dos(a);
 	//sort_cinco(a,b);
+	//reverse_rotate_a(a);
 	sorting_cien(a,b);
 	print_stack(a);
 	//push_a(a,b);

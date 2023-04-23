@@ -35,7 +35,7 @@ void sort_tres(t_stack *stack_a)
 }
 void sort_dos(t_stack *stack_a)
 {
-	if(stack_a->items[stack_a->top] > stack_a->items[stack_a->top - 1])
+	if(stack_a->items[stack_a->top] > stack_a->items[stack_a->top + 1])
 	{
 		my_swap_a(stack_a);
 	}
@@ -45,7 +45,7 @@ void sort_cinco(t_stack *stack_a,t_stack *stack_b)
 	int index;
 	int i;
 	i = 0;
-	while( stack_a->top > 2 )
+	while( stack_a->top > 2)
 	{
 		index = find_small_index(stack_a);
 		if(index == stack_a->top)

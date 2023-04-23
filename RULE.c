@@ -12,6 +12,8 @@
 
 #include"push_swap.h"
 
+#include"push_swap.h"
+
 void push_b(t_stack *stack_a , t_stack *stack_b)
 {
 

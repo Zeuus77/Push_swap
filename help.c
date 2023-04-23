@@ -67,11 +67,11 @@ int	max_h(t_stack *stack_b)
 	int	m;
 
 	i = 0;
-	m = 0;
-	while (i <= stack_b->top)
+	m = stack_b->items[0];
+	while (i < stack_b->top)
 	{
-		if (stack_b->items[i] > stack_b->items[m])
-			m= i;
+		if (stack_b->items[i] > m)
+			m = stack_b->items[i];
 		i++;
 	}
 	return (m);

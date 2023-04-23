@@ -1,13 +1,12 @@
 NAME = push_swap
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-SRCS = push_swap.c ft_split.c RULE.C rule1.c rule3.c utils.c utils2.c
-OBJS = push_swap.o ft_split.o RULE.o rule1.o rule3.o utils.o utils.o
+#CFLAGS = -Wall -Wextra -Werror
+SRCS = ft_split.c help.c push_swap.c RULE.c Rule1.c rule3.c sorting.c sorting2.c utils.c utils2.c
 
 all: $(NAME)
 
-$(NAME) : $(OBJS)
-		$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+$(NAME) : $(SRCS)
+	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 clean:
 	rm -f *.o $(NAME) 
 fclean:

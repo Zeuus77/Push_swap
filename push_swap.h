@@ -53,13 +53,14 @@ void reverse_rotate_a(t_stack *stack_a);
 void reverse_rotate_b(t_stack *stack_b);
 void reverse_rotate_ab(t_stack *stack_a,t_stack *stack_b); 
 void pushh(t_stack *stack);
+void sort_dos(t_stack *stack_a);
 void sort_tres(t_stack *stack_a);
 void sort_deus(t_stack *stack_a);
 void sort_cinco(t_stack *stack_a,t_stack *stack_b);
 void sorting_cien(t_stack *stack_a,t_stack *stack_b);
 int find_small(t_stack *stack_a);
 int find_small_index(t_stack *stack_a);
-int range_h(int stack_a,int start,int end);
+int range_h(int stack_a,int start,int end );
 int	max_h(t_stack *stackb);
 
 

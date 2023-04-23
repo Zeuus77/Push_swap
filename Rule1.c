@@ -12,6 +12,8 @@
 
 #include"push_swap.h"
 
+#include"push_swap.h"
+
 void reverse_rotate_a(t_stack* stack_a) 
 {
     int bot;
